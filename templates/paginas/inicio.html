@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+<!-- Hero Card del Mockup -->
+<div class="p-5 bg-card-verde rounded-4 shadow-sm mb-4 border">
+    <div class="container-fluid py-2">
+        <h1 class="display-5 fw-bold text-success">Bienvenido al Vivero Hojas Verdes</h1>
+        <p class="fs-5 text-muted">Controla tu inventario de plantas con fotos, precios y stock.</p>
+        <a class="btn btn-verde btn-lg px-4 mt-2" href="{% url 'plantas' %}">Ver plantas</a>
+    </div>
+</div>
+
+<!-- 3 Tarjetas de Resumen (Figura 1) -->
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm border h-100 p-3 rounded-3">
+            <div class="card-body">
+                <h6 class="card-subtitle text-muted mb-2">Total de plantas</h6>
+                <p class="display-5 fw-bold text-success mb-0">{{ cantidad_plantas }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm border h-100 p-3 rounded-3">
+            <div class="card-body">
+                <h6 class="card-subtitle text-muted mb-2">Planta más cara</h6>
+                {% if planta_mas_cara %}
+                    <p class="h4 fw-bold text-success mb-0">{{ planta_mas_cara.nombre }} ${{ planta_mas_cara.precio }}</p>
+                {% else %}
+                    <p class="text-muted mb-0">Sin datos</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm border h-100 p-3 rounded-3">
+            <div class="card-body">
+                <h6 class="card-subtitle text-muted mb-2">Stock total</h6>
+                <p class="display-5 fw-bold text-success mb-0">{{ stock_total }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

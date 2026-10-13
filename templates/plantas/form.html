@@ -1,0 +1,34 @@
+<form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    
+    {% for campo in formulario %}
+    <div class="mb-3">
+        <label class="form-label fw-bold">{{ campo.label }}</label>
+        
+        {% if campo.field.widget.input_type == 'file' and campo.value %}
+            <div class="mb-2">
+                <img src="{{ MEDIA_URL }}{{ campo.value }}" width="120" class="rounded border">
+            </div>
+        {% endif %}
+        
+        <input 
+            type="{{ campo.field.widget.input_type }}" 
+            class="form-control" 
+            name="{{ campo.name }}" 
+            value="{{ campo.value|default:'' }}"
+            placeholder="{{ campo.label }}">
+            
+
+        {% if campo.errors %}
+            <div class="text-danger small mt-1">
+                {{ campo.errors }}
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class="mt-4">
+        <input type="submit" class="btn btn-success" value="Guardar información">
+        <a class="btn btn-secondary ms-2" href="{% url 'plantas' %}">Cancelar</a>
+    </div>
+</form>

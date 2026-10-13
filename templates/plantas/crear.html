@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block titulo %}Nueva Planta{% endblock %}
+
+{% block contenido %}
+<div class="card shadow-sm border-0 col-md-8 mx-auto">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">Agregar Nueva Planta al Inventario</h5>
+    </div>
+    <div class="card-body">
+        {% include 'plantas/form.html' %}
+    </div>
+</div>
+{% endblock %}
